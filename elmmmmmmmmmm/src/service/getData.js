@@ -1,5 +1,5 @@
 import fetch from '../config/fetch'
-import {getStore} from '../config/mUtils'
+import { getStore } from '../config/mUtils'
 
 /**
  * 获取首页默认地址
@@ -196,7 +196,7 @@ export const mobileCode = phone => fetch('/v4/mobile/verify_code/send', {
  * 获取图片验证码
  */
 
-export const getcaptchas = () => fetch('/v1/captchas', {},'POST');
+export const getcaptchas = () => fetch('/v1/captchas', {}, 'POST');
 
 
 /**
@@ -362,7 +362,7 @@ export const getService = () => fetch('/v3/profile/explain');
 *兑换会员卡
 */
 
-export const vipCart = (id, number, password) => fetch('/member/v1/users/' + id + '/delivery_card/physical_card/bind',{
+export const vipCart = (id, number, password) => fetch('/member/v1/users/' + id + '/delivery_card/physical_card/bind', {
 	number,
 	password
 }, 'POST')
@@ -389,7 +389,7 @@ export const getExpired = id => fetch('/promotion/v2/users/' + id + '/expired_ho
  * 兑换红包
 */
 
-export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/users/' + id + '/hongbao/exchange',{
+export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/users/' + id + '/hongbao/exchange', {
 	exchange_code,
 	captcha_code,
 }, 'POST');
@@ -399,10 +399,10 @@ export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/u
  * 获取用户信息
  */
 
-export const getUser = () => fetch('/v1/user', {user_id: getStore('user_id')});
+export const getUser = () => fetch('/v1/user', { user_id: getStore('user_id') });
 
 
-/**
+/**z
  * 手机号登录
  */
 
@@ -434,29 +434,29 @@ export const getOrderDetail = (user_id, orderid) => fetch('/bos/v1/users/' + use
 *个人中心里编辑地址
 */
 
-export const getAddressList = (user_id) => fetch('/v1/users/'+user_id+'/addresses')
+export const getAddressList = (user_id) => fetch('/v1/users/' + user_id + '/addresses')
 
 /**
 *个人中心里搜索地址
 */
 
-export const getSearchAddress = (keyword) => fetch('v1/pois',{
-	keyword:keyword,
-	type:'nearby'
+export const getSearchAddress = (keyword) => fetch('v1/pois', {
+	keyword: keyword,
+	type: 'nearby'
 })
 
 /**
 * 删除地址
 */
 
-export const deleteAddress = (userid, addressid) => fetch( '/v1/users/' + userid + '/addresses/' + addressid, {}, 'DELETE')
+export const deleteAddress = (userid, addressid) => fetch('/v1/users/' + userid + '/addresses/' + addressid, {}, 'DELETE')
 
 
 
 /**
  * 账号密码登录
  */
-export const accountLogin = (username, password, captcha_code) => fetch('/v2/login', {username, password, captcha_code}, 'POST');
+export const accountLogin = (username, password, captcha_code) => fetch('/v2/login', { username, password, captcha_code }, 'POST');
 
 
 /**
@@ -468,4 +468,4 @@ export const signout = () => fetch('/v2/signout');
 /**
  * 改密码
  */
-export const changePassword = (username, oldpassWord, newpassword, confirmpassword, captcha_code) => fetch('/v2/changepassword', {username, oldpassWord, newpassword, confirmpassword, captcha_code}, 'POST');
+export const changePassword = (username, oldpassWord, newpassword, confirmpassword, captcha_code) => fetch('/v2/changepassword', { username, oldpassWord, newpassword, confirmpassword, captcha_code }, 'POST');
