@@ -1,9 +1,6 @@
 <template>
   <div class="shoplist_container">
     <ul v-load-more="loaderMore" v-if="shopListArr.length" type="1">
-      <!-- <li v-for="(item, index) in foodList" :key="index">
-        {{ item }}
-      </li> -->
       <router-link
         :to="{ path: 'shop', query: { geohash, id: item.id } }"
         v-for="item in shopListArr"
@@ -94,6 +91,7 @@
     </transition>
   </div>
 </template>
+
 <script>
 import { mapState } from "vuex";
 import { shopList } from "src/service/getData";
@@ -115,8 +113,15 @@ export default {
       imgBaseUrl,
     };
   },
-  computed: {
-    ...mapState(["latitude", "longitude"]),
+  mounted() {
+    this.initData();
+  },
+  // created() {
+  //   this.initData();
+  // },
+  components: {
+    loading,
+    ratingStar,
   },
   props: [
     "restaurantCategoryId",
@@ -127,6 +132,13 @@ export default {
     "confirmSelect",
     "geohash",
   ],
+  mixins: [loadMore, getImgPath],
+  computed: {
+    ...mapState(["latitude", "longitude"]),
+  },
+  updated() {
+    // console.log(this.supportIds, this.sortByType)
+  },
   methods: {
     async initData() {
       //获取数据
@@ -229,20 +241,9 @@ export default {
       this.listenPropChange();
     },
   },
-
-  computed: {
-    ...mapState(["latitude", "longitude"]),
-  },
-  mixins: [loadMore, getImgPath],
-  mounted() {
-    this.initData();
-  },
-  components: {
-    loading,
-    ratingStar,
-  },
 };
 </script>
+
 <style lang="scss" scoped>
 @import "src/style/mixin";
 .shoplist_container {
